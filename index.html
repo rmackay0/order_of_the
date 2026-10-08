@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order of the Sinking Star</title>
+
+
+  <!--
+    ADD HERE (optional): things that live in <head>
+    - A favicon:        <link rel="icon" href="favicon.png">
+    - A Google Font:    <link href="https://fonts.googleapis.com/css2?family=..." rel="stylesheet">
+    - Link previews when you share the URL (Discord, Twitter, etc.):
+        <meta property="og:title" content="Order of the Sinking Star">
+        <meta property="og:image" content="preview.png">
+  -->
+
+  <style>
+    /*
+      Everything visual lives here. It's intentionally plain.
+      TIP: Change these two first — they do the most for the least effort.
+    */
+    body {
+      background: #000;
+      color: #fff;
+      font-family: monospace;
+      text-align: center;
+      margin: 0;
+      padding: 20vh 16px 0;
+    }
+
+    #countdown {
+      font-size: 3rem;
+      /* TIP: try letter-spacing, a custom font, or text-shadow for a glow */
+    }
+
+    /*
+      ADD HERE (optional): styles for anything new you put in <body>.
+      TIP: To use a background image instead of black:
+        body { background: url("bg.jpg") center / cover no-repeat #000; }
+      ("cover" fills the whole screen and crops the edges if needed. The #000 shows while it loads.)
+      If white text is hard to read on top of the image, darken the image a bit:
+        body { background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("bg.jpg") center / cover no-repeat #000; }
+
+      TIP: To style every <img> on the page at once (centered, with space around it):
+        img { display: block; margin: 24px auto; max-width: 100%; }
+    */
+  </style>
+</head>
+<body>
+
+  <h1>Order of the Sinking Star</h1>
+  <h2>A destroyer of lives as an ambulator might surmize</h2>
+  <h3>Reason to get together with others and be alone... Forever</h3>
+  
+
+
+
+  <!-- The script below fills this in. Keep the id="countdown" if you restyle it. -->
+  <p id="countdown"></p>
+  <img src="IMG_1007.jpg" alt="" width="400">
+
+  <!--
+    ADDING A PICTURE
+    ================
+    1. Put the image file in the same folder as this index.html
+       (e.g. ~/Projects/order_of_the/key-art.png).
+       TIP: Use simple filenames: lowercase, no spaces. "key-art.png", not "Key Art (1).PNG".
+            Vercel's servers are case-sensitive, so "Key-Art.png" and "key-art.png" are
+            different files there, even though they're the same file on your Mac.
+
+    2. Paste this line wherever you want it to show up on the page
+       (above the <h1> for a banner, below the countdown for a footer image, etc.):
+
+         <img src="key-art.png" alt="Order of the Sinking Star key art">
+
+       - src = the filename. If you put images in a subfolder, include it: src="images/key-art.png"
+       - alt = a short description, shown if the image fails to load and read by screen readers.
+
+    3. Size it. Pick one:
+         <img src="key-art.png" alt="" width="400">               fixed width, height scales to match
+         <img src="key-art.png" alt="" style="max-width: 100%;">  never wider than the screen (good on phones)
+       TIP: Don't set both width AND height unless you want it stretched.
+
+    4. Commit the image file along with the HTML, or it won't exist on the live site:
+         git add key-art.png index.html
+         git commit -m "Add key art"
+         git push
+
+    TIP: A pasted image URL also works (src="https://..."), but if that site
+         removes the image or blocks hotlinking, yours breaks too. A local file is safer.
+    TIP: Keep images under ~1 MB so the page loads fast. squoosh.app shrinks them for free.
+    TIP: For a full-page background image instead, see the note in the <style> section.
+
+    Nothing appears? Check for a typo in the filename, a mismatch in capitalization or
+    extension (.jpg vs .jpeg vs .png), or that the file is actually in this folder.
+  -->
+
+  <!--
+    ADD HERE (optional): anything else on the page, e.g.
+    - <p>Releases October 8 at 1:00 PM ET</p>
+    - <a href="https://store.steampowered.com/...">Wishlist on Steam</a>
+    - An embedded trailer (YouTube → Share → Embed gives you an <iframe>)
+  -->
+
+  <script>
+    // The release moment. "-04:00" is New York's offset in October (EDT),
+    // so this is correct no matter what time zone the visitor is in.
+    // TIP: To test the "it's out!" state, temporarily set this to a past date.
+    const RELEASE = new Date("2026-10-08T13:00:00-04:00");
+
+    const el = document.getElementById("countdown");
+
+    function tick() {
+      const ms = RELEASE - Date.now();
+
+      if (ms <= 0) {
+        // ADD HERE (optional): what happens at launch.
+        // Swap the text, show a link, redirect: location.href = "https://...";
+        el.textContent = "It's out.";
+        clearInterval(timer);
+        return;
+      }
+
+      const s = Math.floor(ms / 1000);
+      const h = Math.floor(s / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const sec = s % 60;
+
+      // TIP: Change the format here — e.g. add labels like `${h}h ${m}m ${sec}s`.
+      const pad = (n) => String(n).padStart(2, "0");
+      el.textContent = `${pad(h)}:${pad(m)}:${pad(sec)}`;
+    }
+
+    tick();
+    const timer = setInterval(tick, 1000);
+  </script>
+
+</body>
+</html>
