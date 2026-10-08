@@ -20,8 +20,20 @@
       Everything visual lives here. It's intentionally plain.
       TIP: Change these two first — they do the most for the least effort.
     */
+    .photo-row {
+  display: flex;            /* puts the images in a row */
+  justify-content: center;  /* centers the row on the page */
+  gap: 16px;                /* space between the photos */
+}
+
+.photo-row img {
+  width: 300px;             /* each photo's width; change to taste */
+  max-width: 45%;           /* so both still fit side by side on phones */
+  height: auto;             /* keeps the proportions, no stretching */
+}
+
     body {
-      background: #000;
+      background: #59ff00;
       color: #fff;
       font-family: monospace;
       text-align: center;
@@ -58,7 +70,10 @@
 
   <!-- The script below fills this in. Keep the id="countdown" if you restyle it. -->
   <p id="countdown"></p>
-
+<div class="photo-row">
+  <img src="bob_headlamp.jpg" alt="Bob with a headlamp">
+  <img src="dunc_pic.jpg" alt="Dunc">
+</div>
   <!--
     ADDING A PICTURE
     ================
@@ -137,9 +152,3 @@
 
 </body>
 </html>
-
-
-
-git add IMG_1007.jpg index.html
-         git commit -m "Add key art"
-         git push
